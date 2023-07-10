@@ -1,0 +1,18 @@
+{
+    "name": "insyht/larvelous-shop",
+    "type": "library",
+    "description": "Shop plugin for the Larvelous CMS.",
+    "keywords": [
+        "cms",
+        "shop",
+        "webshop",
+        "ecommerce",
+        "larvelous"
+    ],
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=8.0",
+        "insyht/larvelous": "dev-develop"
+    }
+}
