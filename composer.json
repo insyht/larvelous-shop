@@ -13,6 +13,6 @@
     "prefer-stable": true,
     "require": {
         "php": ">=8.0",
-        "insyht/larvelous": "^0"
+        "insyht/larvelous": "dev-develop"
     }
 }
