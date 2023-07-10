@@ -14,5 +14,10 @@
     "require": {
         "php": ">=8.0",
         "insyht/larvelous": "dev-develop"
+    },
+    "autoload": {
+        "psr-4": {
+            "Insyht\\LarvelousShop\\": "",
+        }
     }
 }
