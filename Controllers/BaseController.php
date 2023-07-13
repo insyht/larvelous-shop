@@ -12,11 +12,16 @@ class BaseController extends Controller implements BasePluginControllerInterface
 {
     public function match(string $slug): bool
     {
-        return ProductCategory::where('url', $slug)->first();
+        return ProductCategory::where('url', $slug)->first() ? true : false;
     }
 
-    public function load(string $slug): Factory|View
+    public function load(string $slug): Factory|View|null
     {
-        $a = 0;
+        switch (true) {
+            case !empty(ProductCategory::where('url', $slug)->first()):
+                return app(ProductCategoryController::class)->show(ProductCategory::where('url', $slug)->first());
+        }
+
+        return null;
     }
 }

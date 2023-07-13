@@ -13,6 +13,7 @@ return new class extends Migration {
         Schema::create('product_category', function (Blueprint $table) {
             $table->id();
             $table->string('title', 200);
+            $table->text('introduction');
             $table->text('url');
             $table->text('image')->nullable();
             $table->unsignedBigInteger('parent_category')->nullable();
