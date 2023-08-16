@@ -19,7 +19,11 @@
 
     <div class="row justify-content-between">
         <div class="col">
-{{--            <p class="h3 w-100">9 Producten <small class="text-muted">12 Producten totaal</small></p>--}}
+            <p class="h3 w-100">
+                {{ $products->count() }} {{ __('insyht-larvelous-shop::translations.productOrProducts') }} {{--
+                todo paginering --}}
+                <small class="text-muted">{{ $products->count() }} {{ __('insyht-larvelous-shop::translations.productOrProductsTotal') }}</small>
+            </p>
         </div>
         <div class="col-12 col-md-3">
             <div class="dropdown">
@@ -44,91 +48,10 @@
 
     <div class="row">
         <div class="col-sm-3 col-md-3 accordion mb-5" id="productFilters">
-            @if (count($productCategory->getAvailableFilters()) > 0)
-{{--            <div class="accordion-item">--}}
-{{--                <div class="accordion-header">--}}
-{{--                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#productFiltersSize">--}}
-{{--                        Maat--}}
-{{--                    </button>--}}
-{{--                </div>--}}
-{{--                <div id="productFiltersSize" class="accordion-collapse collapse" data-bs-parent="#productFilters">--}}
-{{--                    <div class="accordion-body">--}}
-{{--                        <button type="button" class="list-group-item list-group-item-action">Maat 1</button>--}}
-{{--                        <button type="button" class="list-group-item list-group-item-action">Maat 2</button>--}}
-{{--                        <button type="button" class="list-group-item list-group-item-action">Maat 3</button>--}}
-{{--                        <button type="button" class="list-group-item list-group-item-action">Maat 4</button>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-
-{{--            <div class="accordion-item">--}}
-{{--                <div class="accordion-header">--}}
-{{--                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"--}}
-{{--                            data-bs-target="#productFiltersColor">--}}
-{{--                        Kleur--}}
-{{--                    </button>--}}
-{{--                </div>--}}
-{{--                <div id="productFiltersColor" class="accordion-collapse collapse" data-bs-parent="#productFilters">--}}
-{{--                    <div class="accordion-body">--}}
-{{--                        <button type="button" class="list-group-item list-group-item-action">Rood</button>--}}
-{{--                        <button type="button" class="list-group-item list-group-item-action active">--}}
-{{--                            Groen--}}
-{{--                        </button>--}}
-{{--                        <button type="button" class="list-group-item list-group-item-action">Blauw</button>--}}
-{{--                        <button type="button" class="list-group-item list-group-item-action">Roze</button>--}}
-{{--                        <button type="button" class="list-group-item list-group-item-action active">--}}
-{{--                            Wit--}}
-{{--                        </button>--}}
-{{--                        <button type="button" class="list-group-item list-group-item-action">Geel</button>--}}
-{{--                        <button type="button" class="list-group-item list-group-item-action">Zwart</button>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-
-{{--            <div class="accordion-item">--}}
-{{--                <div class="accordion-header">--}}
-{{--                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"--}}
-{{--                            data-bs-target="#productFiltersLength">--}}
-{{--                        Lengte--}}
-{{--                    </button>--}}
-{{--                </div>--}}
-{{--                <div id="productFiltersLength" class="accordion-collapse collapse" data-bs-parent="#productFilters">--}}
-{{--                    <div class="accordion-body">--}}
-{{--                        <label for="filter-length-min" class="form-label">Minimaal</label>--}}
-{{--                        <div class="row mt-0 mb-0">--}}
-{{--                            <div class="col">--}}
-{{--                                <input type="range" class="form-range" min="0" max="100" value="10" id="filter-length-min" oninput="document.getElementById('filter-length-min-value').innerHTML = this.value + 'cm'">--}}
-{{--                            </div>--}}
-{{--                            <div class="col" id="filter-length-min-value">10 cm</div>--}}
-{{--                        </div>--}}
-{{--                        <label for="filter-length-max" class="form-label">Maximaal</label>--}}
-{{--                        <div class="row mt-0 mb-0">--}}
-{{--                            <div class="col">--}}
-{{--                                <input type="range" class="form-range " min="0" max="100" value="80" id="filter-length-max" oninput="document.getElementById('filter-length-max-value').innerHTML = this.value + 'cm'">--}}
-{{--                            </div>--}}
-{{--                            <div class="col" id="filter-length-max-value">80 cm</div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-
-{{--            <div class="accordion-item">--}}
-{{--                <div class="accordion-header">--}}
-{{--                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"--}}
-{{--                            data-bs-target="#productFiltersBrand">--}}
-{{--                        Merk--}}
-{{--                    </button>--}}
-{{--                </div>--}}
-{{--                <div id="productFiltersBrand" class="accordion-collapse collapse" data-bs-parent="#productFilters">--}}
-{{--                    <div class="accordion-body">--}}
-{{--                        <button type="button" class="list-group-item list-group-item-action">Bibs</button>--}}
-{{--                        <button type="button" class="list-group-item list-group-item-action active">--}}
-{{--                            Frigg--}}
-{{--                        </button>--}}
-{{--                        <button type="button" class="list-group-item list-group-item-action">Mushie</button>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
+            @if ($productCategory->getAvailableFilters()->count() > 0)
+                @foreach ($productCategory->getAvailableFilters() as $filterName => $filter)
+                    @include($templatePath . '.attribute_types.' . $filter['template'])
+                @endforeach
             @endif
         </div>
 
@@ -141,12 +64,12 @@
         </div>
         @endif
 
-{{--        @if (count($productCategory->products) > 0)--}}
-{{--        <div class="row">--}}
-{{--            @foreach ($productCategory->products as $product)--}}
-{{--            @include('blocks.product.product', ['product' => $product])--}}
-{{--            @include('blocks.product.product', ['sale' => true])--}}
-{{--        </div>--}}
+        @if ($products->count() > 0)
+        <div class="row">
+            @foreach ($products as $product)
+            @include($templatePath . '.product-block', ['product' => $product])
+            @endforeach
+        </div>
 
 {{--        <div class="row">--}}
 {{--            <div class="col">--}}
@@ -167,9 +90,9 @@
 {{--                </nav>--}}
 {{--            </div>--}}
 {{--        </div>--}}
-{{--        @else--}}
-{{--            {{ __('insyht-larvelous-shop.noProductsInCategory') }}--}}
-{{--        @endif--}}
+        @else
+            {{ __('insyht-larvelous-shop::translations.noProductsInCategory') }}
+        @endif
     </div>
 </div>
 @endsection
