@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Insyht\LarvelousShop\Collections\ProductCollection;
-use Insyht\LarvelousShop\Entities\Filter;
 use Insyht\LarvelousShop\Helpers\FilterHelper;
 
 class ProductCategory extends Model
@@ -39,7 +38,6 @@ class ProductCategory extends Model
             $products = $products->merge($child->hierarchicalProducts($applyFilters));
         }
 
-        $a = 0;
         $products = $products->unique(function (Product $product) {
             return $product->id;
         });

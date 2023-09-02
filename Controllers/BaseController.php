@@ -14,12 +14,14 @@ class BaseController extends Controller implements BasePluginControllerInterface
     public function match(string $slug): bool
     {
         $found = false;
-        if ($slug === 'filter') {
-            $found = true;
-        } elseif (ProductCategory::where('url', $slug)->first()) {
-            $found = true;
-        } elseif (Product::where('url', $slug)->first()) {
-            $found = true;
+        switch (true) {
+            case $slug === 'filter':
+            case !empty(ProductCategory::where('url', $slug)->first()):
+            case !empty(Product::where('url', $slug)->first()):
+            case $slug === 'add-to-cart':
+            case $slug === 'add-to-wishlist':
+                $found = true;
+                break;
         }
 
         return $found;
@@ -31,12 +33,18 @@ class BaseController extends Controller implements BasePluginControllerInterface
         switch (true) {
             case $slug === 'filter':
                 if (request()->method() === 'POST') {
-                    $return = app(FilterController::class)->apply();
+                    app(FilterController::class)->apply();
                 } elseif (request()->method() === 'DELETE') {
-                    $return = app(FilterController::class)->remove();
+                    app(FilterController::class)->remove();
                 } else {
                     break;
                 }
+                break;
+            case $slug === 'add-to-cart':
+                app(CartController::class)->addToCart();
+                break;
+            case $slug === 'add-to-wishlist':
+                app(WishlistController::class)->addToWishlist();
                 break;
             case !empty(ProductCategory::where('url', $slug)->first()):
                 $return = app(ProductCategoryController::class)->show(ProductCategory::where('url', $slug)->first());

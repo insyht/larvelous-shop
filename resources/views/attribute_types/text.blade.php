@@ -7,15 +7,16 @@
     <div id="productFilters{{ \Illuminate\Support\Str::slug($filterName) }}" class="accordion-collapse collapse @if ($filter['active'] === true) show @endif">
         <div class="accordion-body">
             @foreach ($filter['values'] as $filterValue)
-                <button type="button" class="list-group-item list-group-item-action @if ($filterValue->isActive()) active @endif" @if ($filterValue->isActive()) onclick="removeFilter('text', this, {{ $filter['attributeId'] }});" @else onclick="applyFilter('text', this, {{ $filter['attributeId'] }});" @endif>
+                <button type="button" class="btn btn-filter ist-group-item list-group-item-action @if ($filterValue->isActive()) active @endif" @if ($filterValue->isActive()) onclick="removeFilter('text', this, {{ $filter['attributeId'] }});" @else onclick="applyFilter('text', this, {{ $filter['attributeId'] }});" @endif>
                     {{ $filterValue->value }}
                 </button>
             @endforeach
             <br />
-            {{--Todo only show delete button when this filter is set--}}
+                @if ($filter['active'])
             <button class="btn btn-danger col-12" onclick="removeFilter({{ $filter['attributeId'] }});">
                 {{ __('insyht-larvelous-shop::translations.removeFilter') }}
             </button>
+                    @endif
         </div>
     </div>
 </div>

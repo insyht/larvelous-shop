@@ -9,4 +9,9 @@ return [
     'maximum' => 'Maximaal',
     'applyFilter' => 'Toepassen',
     'removeFilter' => 'Verwijderen',
+    'productDescription' => 'Productomschrijving',
+    'relatedProducts' => 'Gerelateerde producten',
+    'placeInCart' => 'In winkelwagen',
+    'addToWishlist' => 'Toevoegen aan verlanglijst',
+    'readMore' => 'Lees meer',
 ];
