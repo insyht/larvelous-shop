@@ -12,18 +12,17 @@ function applyFilter(type, identifier, attributeId) {
     } else if (type === 'text') {
         filterUrl = '?' + attributeId + "=" + encodeURIComponent(identifier.innerHTML.trim());
     }
-
     var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    fetch('filter' + filterUrl, {method: 'POST', headers: {'X-CSRF-TOKEN': csrfToken}})
+    fetch(window.location.origin + '/filter' + filterUrl, {method: 'POST', headers: {'X-CSRF-TOKEN': csrfToken}})
         .then(response => response.text())
         .then(redirectUrl => window.location.replace(redirectUrl));
 }
 
 function removeFilter(attributeId) {
-    filterUrl = '?' + attributeId;
+    filterUrl = window.location.origin + '?' + attributeId;
     var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-    fetch('filter' + filterUrl, {method: 'DELETE', headers: {'X-CSRF-TOKEN': csrfToken}})
+    fetch(window.location.origin + '/filter' + filterUrl, {method: 'DELETE', headers: {'X-CSRF-TOKEN': csrfToken}})
         .then(response => response.text())
         .then(redirectUrl => window.location.replace(redirectUrl));
 }

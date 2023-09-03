@@ -1,23 +1,51 @@
 {
-    "name": "insyht/larvelous-shop",
-    "type": "library",
-    "description": "Shop plugin for the Larvelous CMS.",
-    "keywords": [
-        "cms",
-        "shop",
-        "webshop",
-        "ecommerce",
-        "larvelous"
-    ],
-    "minimum-stability": "stable",
-    "prefer-stable": true,
-    "require": {
-        "php": ">=8.0",
-        "insyht/larvelous": "dev-develop"
-    },
-    "autoload": {
-        "psr-4": {
-            "Insyht\\LarvelousShop\\": ""
-        }
+  "name": "insyht/larvelous-shop",
+  "type": "library",
+  "description": "Shop plugin for the Larvelous CMS.",
+  "keywords": [
+    "cms",
+    "shop",
+    "webshop",
+    "ecommerce",
+    "larvelous"
+  ],
+  "authors": [
+    {
+      "name": "Jordy Thijs",
+      "email": "jordy@insyht.nl"
     }
+  ],
+  "require": {
+    "php": ">=8.0",
+    "illuminate/support": "*",
+    "insyht/larvelous": "dev-package"
+  },
+  "autoload": {
+    "psr-4": {
+      "Insyht\\LarvelousShop\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Insyht\\LarvelousShop\\Tests\\": "tests"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Insyht\\LarvelousShop\\Providers\\ShopServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require-dev": {
+    "orchestra/testbench": "^8.0",
+    "phpunit/phpunit": "^10.3"
+  },
+  "config": {
+    "allow-plugins": {
+      "php-http/discovery": true
+    }
+  }
 }
