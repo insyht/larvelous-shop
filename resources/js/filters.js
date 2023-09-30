@@ -19,9 +19,8 @@ function applyFilter(type, identifier, attributeId) {
 }
 
 function removeFilter(attributeId) {
-    filterUrl = window.location.origin + '?' + attributeId;
+    filterUrl = '?' + attributeId;
     var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
     fetch(window.location.origin + '/filter' + filterUrl, {method: 'DELETE', headers: {'X-CSRF-TOKEN': csrfToken}})
         .then(response => response.text())
         .then(redirectUrl => window.location.replace(redirectUrl));
