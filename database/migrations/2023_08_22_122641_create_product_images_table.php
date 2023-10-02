@@ -21,8 +21,6 @@ return new class extends Migration
                   ->on('products')
                   ->onUpdate('cascade')
                   ->onDelete('cascade');
-
-            $table->index('product_id');
         });
     }
 

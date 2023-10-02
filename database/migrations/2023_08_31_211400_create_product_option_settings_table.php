@@ -24,8 +24,8 @@ return new class extends Migration {
                   ->onUpdate('cascade')
                   ->onDelete('cascade');
 
-            $table->index('product_option_setting_id');
-            $table->foreign('product_option_setting_id')
+            $table->index('product_option_setting_id', 'popos_posi_index');
+            $table->foreign('product_option_setting_id', 'popos_posi_index')
                   ->references('id')
                   ->on('product_option_settings')
                   ->onUpdate('cascade')

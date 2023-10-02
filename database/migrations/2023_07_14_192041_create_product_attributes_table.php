@@ -24,6 +24,17 @@ return new class extends Migration
             $table->foreign('language_id')->references('id')->on('languages')->onUpdate('cascade')->onDelete('cascade');
         });
 
+        Schema::create('product_attribute_types', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('language_id', false, true);
+            $table->string('title', 50);
+            $table->text('template');
+            $table->boolean('is_ranged')->default(false);
+
+            $table->index('language_id');
+            $table->foreign('language_id')->references('id')->on('languages')->onUpdate('cascade')->onDelete('cascade');
+        });
+
         Schema::create('product_attributes', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('language_id', false, true);
@@ -50,34 +61,6 @@ return new class extends Migration
                   ->on('product_attribute_types')
                   ->onUpdate('cascade')
                   ->onDelete('cascade');
-        });
-
-        Schema::create('product_attribute_values', function (Blueprint $table) {
-            $table->bigInteger('product_id', false, true);
-            $table->bigInteger('product_attribute_id', false, true);
-            $table->text('value');
-
-            $table->primary(['product_id', 'product_attribute_id']);
-            $table->index('product_id');
-            $table->index('product_attribute_id');
-
-            $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('product_attribute_id')
-                  ->references('id')
-                  ->on('product_attributes')
-                  ->onUpdate('cascade')
-                  ->onDelete('cascade');
-        });
-
-        Schema::create('product_attribute_types', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('language_id', false, true);
-            $table->string('title', 50);
-            $table->text('template');
-            $table->boolean('is_ranged')->default(false);
-
-            $table->index('language_id');
-            $table->foreign('language_id')->references('id')->on('languages')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

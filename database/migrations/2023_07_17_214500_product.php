@@ -49,6 +49,19 @@ return new class extends Migration {
                   ->onUpdate('cascade')
                   ->onDelete('cascade');
         });
+
+        Schema::create('product_attribute_values', function (Blueprint $table) {
+            $table->bigInteger('product_id', false, true);
+            $table->bigInteger('product_attribute_id', false, true);
+            $table->text('value');
+
+            $table->primary(['product_id', 'product_attribute_id']);
+            $table->index('product_id');
+            $table->index('product_attribute_id');
+
+            $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('product_attribute_id')->references('id')->on('product_attributes')->onUpdate('cascade')->onDelete('cascade');
+        });
     }
 
     /**
