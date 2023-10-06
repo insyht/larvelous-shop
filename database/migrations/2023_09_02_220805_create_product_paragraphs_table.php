@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->text('image')->nullable()->default(null);
             $table->text('url')->nullable()->default(null);
             $table->string('url_text')->nullable()->default(null);
-            $table->enum('image_position', ['left, right'])->nullable()->default(null);
+            $table->enum('image_position', ['left', 'right'])->nullable()->default(null);
 
             $table->index('product_id');
             $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');

@@ -29,7 +29,7 @@ return new class extends Migration
             $table->bigInteger('language_id', false, true);
             $table->string('title', 50);
             $table->text('template');
-            $table->boolean('is_ranged')->default(false);
+            $table->boolean('is_ranged')->default(false)->unsigned();
 
             $table->index('language_id');
             $table->foreign('language_id')->references('id')->on('languages')->onUpdate('cascade')->onDelete('cascade');
