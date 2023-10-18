@@ -12,7 +12,7 @@ class ProductOptionSetting extends Model
         'name',
     ];
 
-    public function products()
+    public function productOptions()
     {
         return $this->belongsToMany(ProductOption::class);
     }

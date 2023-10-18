@@ -8,7 +8,7 @@
                 </div>
             </div>
             @endif
-            <img src="{{url('/images/placeholder.jpg')}}" class="card-img-top" alt="...">
+            <img src="{{url('/storage/images/placeholder.jpg')}}" class="card-img-top" alt="...">
 {{--            <div class="text-center text-light text-uppercase @if (isset($sale) && $sale === true)bg-success @else--}}
 {{--                    bg-transparent @endif ">--}}
 {{--                @if (isset($sale) && $sale === true)--}}

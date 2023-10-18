@@ -32,7 +32,7 @@
   @if ($product->main_image)
   <div class="col">
     <a href="#" data-bs-target="#productImageMain" data-bs-slide-to="0">
-      <img src="{{url('/images/placeholder.jpg')}}" class="img-fluid">
+      <img src="{{url('/storage/images/placeholder.jpg')}}" class="img-fluid">
     </a>
   </div>
   @endif
