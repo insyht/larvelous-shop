@@ -17,6 +17,7 @@ class ProductCategoryController extends BasePluginController
         }
 
         $products = $productCategory->hierarchicalProducts();
+        $products = $this->paginateCollection($products, 8); // todo Make the amount of items per page configurable
 
         return $this->decoratedView(
             'insyht-larvelous-shop::product-category',

@@ -20,9 +20,8 @@
     <div class="row justify-content-between">
         <div class="col">
             <p class="h3 w-100">
-                {{ $products->count() }} {{ __('insyht-larvelous-shop::translations.productOrProducts') }} {{--
-                todo paginering --}}
-                <small class="text-muted">{{ $products->count() }} {{ __('insyht-larvelous-shop::translations.productOrProductsTotal') }}</small>
+                {{ $products->total() }} {{ __('insyht-larvelous-shop::translations.productOrProducts') }}
+                <small class="text-muted">{{ $products->total() }} {{ __('insyht-larvelous-shop::translations.productOrProductsTotal') }}</small>
             </p>
         </div>
         <div class="col-12 col-md-3">
@@ -64,32 +63,38 @@
         </div>
         @endif
 
-        @if ($products->count() > 0)
-        <div class="row">
-            @foreach ($products as $product)
-            @include('insyht-larvelous-shop::product-block', ['product' => $product])
-            @endforeach
-        </div>
+        @if ($products->total() > 0)
+            <div class="row">
+                @foreach ($products as $product)
+                @include('insyht-larvelous-shop::product-block', ['product' => $product])
+                @endforeach
+            </div>
 
-{{--        <div class="row">--}}
-{{--            <div class="col">--}}
-{{--                <nav aria-label="...">--}}
-{{--                    <ul class="pagination justify-content-center">--}}
-{{--                        <li class="page-item disabled">--}}
-{{--                            <a class="page-link">Vorige</a>--}}
-{{--                        </li>--}}
-{{--                        <li class="page-item"><a class="page-link" href="#">1</a></li>--}}
-{{--                        <li class="page-item active" aria-current="page">--}}
-{{--                            <a class="page-link" href="#">2</a>--}}
-{{--                        </li>--}}
-{{--                        <li class="page-item"><a class="page-link" href="#">3</a></li>--}}
-{{--                        <li class="page-item">--}}
-{{--                            <a class="page-link" href="#">Volgende</a>--}}
-{{--                        </li>--}}
-{{--                    </ul>--}}
-{{--                </nav>--}}
-{{--            </div>--}}
-{{--        </div>--}}
+            @if ($products->hasPages())
+            <div class="row">
+                <div class="col">
+                    <nav>
+                        <ul class="pagination justify-content-center">
+                            @if ($products->previousPageUrl() !== null)
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $products->previousPageUrl() }}">{{ __('insyht-larvelous-shop::translations.previousPage') }}</a>
+                            </li>
+                            @endif
+                            @for ($p = 1; $p <= $products->lastPage(); $p++)
+                            <li class="page-item @if ($p === $products->currentPage()) active @endif ">
+                                <a class="page-link" href="{{ $products->url($p) }}">{{ $p }}</a>
+                            </li>
+                            @endfor
+                            @if ($products->nextPageUrl() !== null)
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $products->nextPageUrl() }}">{{ __('insyht-larvelous-shop::translations.nextPage') }}</a>
+                            </li>
+                            @endif
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            @endif
         @else
             {{ __('insyht-larvelous-shop::translations.noProductsInCategory') }}
         @endif

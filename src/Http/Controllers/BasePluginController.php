@@ -12,7 +12,10 @@ class BasePluginController extends AbstractPluginController
             [
                 'hotFile' => 'vendor/insyht/larvelous-shop/larvelous-shop.hot',
                 'buildDirectory' => 'vendor/insyht/larvelous-shop',
-                'entryPoints' => ['resources/js/app.js'],
+                'entryPoints' => [
+                    'resources/js/app.js',
+                    'resources/sass/larvelous-shop.scss',
+                ],
             ],
         ];
     }

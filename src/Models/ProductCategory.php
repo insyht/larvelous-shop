@@ -47,7 +47,6 @@ class ProductCategory extends Model
         if ($applyFilters) {
             $products = app(FilterHelper::class)->applyFilters($products);
         }
-        // todo Paginate too, see https://laravel.com/docs/10.x/pagination
 
         return $products;
     }

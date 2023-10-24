@@ -14,4 +14,6 @@ return [
     'placeInCart' => 'In winkelwagen',
     'addToWishlist' => 'Toevoegen aan verlanglijst',
     'readMore' => 'Lees meer',
+    'previousPage' => 'Vorige',
+    'nextPage' => 'Volgende',
 ];
