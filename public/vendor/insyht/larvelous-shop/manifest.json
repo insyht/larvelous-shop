@@ -1,12 +1,4 @@
 {
-  "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff": {
-    "file": "assets/bootstrap-icons-4d4572ef.woff",
-    "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff"
-  },
-  "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2": {
-    "file": "assets/bootstrap-icons-bacd70af.woff2",
-    "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2"
-  },
   "node_modules/bootstrap/dist/js/bootstrap.js?commonjs-entry": {
     "file": "assets/bootstrap-7c953a61.js",
     "isEntry": true,
@@ -20,9 +12,9 @@
     "isEntry": true,
     "src": "resources/js/app.js"
   },
-  "resources/sass/app.scss": {
-    "file": "assets/app-1b878f40.css",
+  "resources/sass/larvelous-shop.scss": {
+    "file": "assets/larvelous-shop-8331db42.css",
     "isEntry": true,
-    "src": "resources/sass/app.scss"
+    "src": "resources/sass/larvelous-shop.scss"
   }
 }

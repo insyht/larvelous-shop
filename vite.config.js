@@ -9,7 +9,7 @@ export default defineConfig({
             input: [
                 'node_modules/bootstrap/dist/js/bootstrap.js',
                 'resources/js/app.js',
-                'resources/sass/app.scss'
+                'resources/sass/larvelous-shop.scss'
             ],
             refresh: true,
         }),
