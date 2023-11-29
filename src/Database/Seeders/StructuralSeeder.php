@@ -5,7 +5,7 @@ namespace Insyht\LarvelousShop\Database\Seeders;
 use Illuminate\Database\Seeder;
 use Insyht\Larvelous\Models\Template;
 
-class ProductSeeder extends Seeder
+class StructuralSeeder extends Seeder
 {
     public function run()
     {
