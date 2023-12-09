@@ -18,7 +18,7 @@
   "require": {
     "php": "^8.2",
     "illuminate/support": "*",
-    "insyht/larvelous": "dev-package"
+    "insyht/larvelous": "master"
   },
   "autoload": {
     "psr-4": {
@@ -47,5 +47,15 @@
     "allow-plugins": {
       "php-http/discovery": true
     }
-  }
+  },
+  "repositories": [
+        {
+            "type": "path",
+            "url": "../larvelous-shop"
+        },
+        {
+            "type": "path",
+            "url": "../larvelous"
+        }
+  ]
 }
