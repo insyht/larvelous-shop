@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('product_option_id');
             $table->unsignedBigInteger('product_option_setting_id');
-            $table->text('value')->default('');
+            $table->text('value');
 
             $table->index('product_option_id');
             $table->foreign('product_option_id')

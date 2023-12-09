@@ -11,9 +11,9 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('product_id');
             $table->string('title')->nullable()->default(null);
-            $table->text('text')->nullable()->default(null);
-            $table->text('image')->nullable()->default(null);
-            $table->text('url')->nullable()->default(null);
+            $table->text('text')->nullable();
+            $table->text('image')->nullable();
+            $table->text('url')->nullable();
             $table->string('url_text')->nullable()->default(null);
             $table->enum('image_position', ['left', 'right'])->nullable()->default(null);
 

@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('payment_id')->nullable();
             $table->unsignedBigInteger('customer_id')->nullable();
             $table->unsignedBigInteger('shipment_id')->nullable();
-            $table->text('remarks')->nullable()->default(null);
+            $table->text('remarks')->nullable();
             $table->timestamps();
 
             $table->index('session_id');

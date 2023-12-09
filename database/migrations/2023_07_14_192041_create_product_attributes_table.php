@@ -41,7 +41,7 @@ return new class extends Migration
             $table->string('title', 200);
             $table->bigInteger('product_attribute_group_id', false, true);
             $table->bigInteger('product_attribute_type_id', false, true);
-            $table->text('unit')->default('');
+            $table->text('unit');
             $table->integer('order', false, true);
 
             $table->index('product_attribute_group_id');
