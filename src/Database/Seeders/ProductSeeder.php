@@ -3,6 +3,8 @@
 namespace Insyht\LarvelousShop\Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Insyht\Larvelous\Models\Menu;
+use Insyht\Larvelous\Models\MenuItem;
 use Insyht\LarvelousShop\Models\Product;
 use Insyht\LarvelousShop\Models\ProductAttribute;
 use Insyht\LarvelousShop\Models\ProductAttributeGroup;
@@ -84,6 +86,12 @@ class ProductSeeder extends Seeder
         $image->order = 1;
         $image->product()->associate($product1);
         $image->save();
+
+        $item = new MenuItem();
+        $item->item_id = $product1->id;
+        $item->item_type = Product::class;
+        $item->ordering = 6;
+        Menu::where('position', 'main_menu')->first()->items()->save($item);
 
         $product = new Product();
         $product->title = 'Productnaam';

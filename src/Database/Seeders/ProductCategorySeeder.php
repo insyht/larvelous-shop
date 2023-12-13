@@ -3,6 +3,9 @@
 namespace Insyht\LarvelousShop\Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Insyht\Larvelous\Models\Menu;
+use Insyht\Larvelous\Models\MenuItem;
+use Insyht\Larvelous\Models\Page;
 use Insyht\LarvelousShop\Models\ProductCategory;
 
 class ProductCategorySeeder extends Seeder
@@ -27,5 +30,17 @@ class ProductCategorySeeder extends Seeder
         $category2->parent()->associate($category);
         $category2->save();
         $category2->refresh();
+
+        $item = new MenuItem();
+        $item->item_id = $category->id;
+        $item->item_type = ProductCategory::class;
+        $item->ordering = 4;
+        Menu::where('position', 'main_menu')->first()->items()->save($item);
+
+        $item = new MenuItem();
+        $item->item_id = $category2->id;
+        $item->item_type = ProductCategory::class;
+        $item->ordering = 5;
+        Menu::where('position', 'main_menu')->first()->items()->save($item);
     }
 }
