@@ -3,6 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Insyht\Larvelous\Models\MenuItemType;
+use Insyht\LarvelousShop\Models\Product;
+use Insyht\LarvelousShop\Models\ProductCategory;
 
 return new class extends Migration {
     /**
@@ -62,6 +65,11 @@ return new class extends Migration {
             $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('product_attribute_id')->references('id')->on('product_attributes')->onUpdate('cascade')->onDelete('cascade');
         });
+
+        $type = new MenuItemType();
+        $type->classname = Product::class;
+        $type->title_column = 'title';
+        $type->save();
     }
 
     /**
@@ -69,6 +77,7 @@ return new class extends Migration {
      */
     public function down(): void
     {
+        MenuItemType::where('classname', Product::class)->delete();
         Schema::dropIfExists('product_product_category');
         Schema::dropIfExists('products');
     }

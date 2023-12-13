@@ -2,12 +2,17 @@
 
 namespace Insyht\LarvelousShop\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Collection;
+use Insyht\Larvelous\Interfaces\MenuItemInterface;
+use Insyht\Larvelous\Models\MenuItem;
 use Insyht\LarvelousShop\Collections\ProductCollection;
 use Insyht\LarvelousShop\Helpers\FilterHelper;
+use ReflectionClass;
 
-class ProductCategory extends Model
+class ProductCategory extends Model implements MenuItemInterface
 {
     public $timestamps = false;
     protected $fillable = ['title', 'introduction', 'url', 'image', 'parent_category', 'order', 'full_url'];
@@ -30,6 +35,13 @@ class ProductCategory extends Model
     public function products()
     {
         return $this->belongsToMany(Product::class);
+    }
+
+    protected function url(): Attribute
+    {
+        return Attribute::make(function ($value) {
+            return 'category/' . $value;
+        });
     }
 
     public function hierarchicalProducts(bool $applyFilters = true): ProductCollection
@@ -134,5 +146,20 @@ class ProductCategory extends Model
     public function getFullUrlAttribute(): string
     {
         return env('APP_URL') . '/' . $this->url;
+    }
+
+    public function menuItems(): MorphMany
+    {
+        return $this->morphMany(MenuItem::class, 'menuitemable');
+    }
+
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
+    public function getTypeTranslation(): string
+    {
+        return __('insyht-larvelous-shop::translations.' . strtolower((new ReflectionClass($this))->getShortName()));
     }
 }

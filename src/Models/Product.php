@@ -5,10 +5,14 @@ namespace Insyht\LarvelousShop\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Collection;
+use Insyht\Larvelous\Interfaces\MenuItemInterface;
+use Insyht\Larvelous\Models\MenuItem;
 use Insyht\LarvelousShop\Entities\Filterable;
+use ReflectionClass;
 
-class Product extends Model
+class Product extends Model implements MenuItemInterface
 {
     public $timestamps = false;
     protected $fillable = [
@@ -118,5 +122,20 @@ class Product extends Model
         return Attribute::make(function ($value) {
             return number_format($value, 2, ',', '.');
         });
+    }
+
+    public function menuItems(): MorphMany
+    {
+        return $this->morphMany(MenuItem::class, 'menuitemable');
+    }
+
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
+    public function getTypeTranslation(): string
+    {
+        return __('insyht-larvelous-shop::translations.' . strtolower((new ReflectionClass($this))->getShortName()));
     }
 }

@@ -16,4 +16,6 @@ return [
     'readMore' => 'Lees meer',
     'previousPage' => 'Vorige',
     'nextPage' => 'Volgende',
+    'productcategory' => 'Productcategorie',
+    'product' => 'Product',
 ];
