@@ -1,14 +1,6 @@
 {
-  "node_modules/bootstrap/dist/js/bootstrap.js?commonjs-entry": {
-    "file": "assets/bootstrap-7c953a61.js",
-    "isEntry": true,
-    "src": "node_modules/bootstrap/dist/js/bootstrap.js?commonjs-entry"
-  },
   "resources/js/app.js": {
-    "file": "assets/app-4d164318.js",
-    "imports": [
-      "node_modules/bootstrap/dist/js/bootstrap.js?commonjs-entry"
-    ],
+    "file": "assets/app-dbe23e4c.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },

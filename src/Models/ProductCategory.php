@@ -11,6 +11,7 @@ use Insyht\Larvelous\Models\MenuItem;
 use Insyht\LarvelousShop\Collections\ProductCollection;
 use Insyht\LarvelousShop\Helpers\FilterHelper;
 use ReflectionClass;
+use Insyht\Larvelous\Collections\MenuItemCollection;
 
 class ProductCategory extends Model implements MenuItemInterface
 {
@@ -150,7 +151,7 @@ class ProductCategory extends Model implements MenuItemInterface
 
     public function menuItems(): MorphMany
     {
-        return $this->morphMany(MenuItem::class, 'menuitemable');
+        return $this->morphMany(MenuItem::class, 'item');
     }
 
     public function getUrl(): string
@@ -161,5 +162,20 @@ class ProductCategory extends Model implements MenuItemInterface
     public function getTypeTranslation(): string
     {
         return __('insyht-larvelous-shop::translations.' . strtolower((new ReflectionClass($this))->getShortName()));
+    }
+
+    public function canHaveChildren(): bool
+    {
+        return true;
+    }
+
+    public function getChildren(): MenuItemCollection
+    {
+        $children = new MenuItemCollection();
+        foreach ($this->children as $child) {
+            $children->add($child->menuItems()->first());
+        }
+
+        return $children;
     }
 }

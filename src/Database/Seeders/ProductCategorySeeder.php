@@ -5,7 +5,6 @@ namespace Insyht\LarvelousShop\Database\Seeders;
 use Illuminate\Database\Seeder;
 use Insyht\Larvelous\Models\Menu;
 use Insyht\Larvelous\Models\MenuItem;
-use Insyht\Larvelous\Models\Page;
 use Insyht\LarvelousShop\Models\ProductCategory;
 
 class ProductCategorySeeder extends Seeder

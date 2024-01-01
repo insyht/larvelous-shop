@@ -11,6 +11,7 @@ use Insyht\Larvelous\Interfaces\MenuItemInterface;
 use Insyht\Larvelous\Models\MenuItem;
 use Insyht\LarvelousShop\Entities\Filterable;
 use ReflectionClass;
+use Insyht\Larvelous\Collections\MenuItemCollection;
 
 class Product extends Model implements MenuItemInterface
 {
@@ -137,5 +138,15 @@ class Product extends Model implements MenuItemInterface
     public function getTypeTranslation(): string
     {
         return __('insyht-larvelous-shop::translations.' . strtolower((new ReflectionClass($this))->getShortName()));
+    }
+
+    public function getChildren(): MenuItemCollection
+    {
+        return new MenuItemCollection();
+    }
+
+    public function canHaveChildren(): bool
+    {
+        return false;
     }
 }

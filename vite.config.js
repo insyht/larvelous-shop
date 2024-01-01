@@ -7,7 +7,6 @@ export default defineConfig({
             hotFile: 'public/vendor/insyht/larvelous-shop/larvelous-shop.hot',
             buildDirectory: 'vendor/insyht/larvelous-shop',
             input: [
-                'node_modules/bootstrap/dist/js/bootstrap.js',
                 'resources/js/app.js',
                 'resources/sass/larvelous-shop.scss'
             ],
