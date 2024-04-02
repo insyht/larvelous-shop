@@ -49,7 +49,7 @@
         <div class="col-sm-3 col-md-3 accordion mb-5" id="productFilters">
             @if ($productCategory->getAvailableFilters()->count() > 0)
                 @foreach ($productCategory->getAvailableFilters() as $filterName => $filter)
-                    @include('insyht-larvelous-shop::attribute_types.' . $filter['template'])
+                    @include('larvelous-shop.attribute_types.' . $filter['template'])
                 @endforeach
             @endif
         </div>
@@ -58,7 +58,7 @@
         @if (count($productCategory->children) > 0)
         <div class="row mb-5">
             @foreach ($productCategory->children as $subcategory)
-            @include('insyht-larvelous-shop::subcategory-block', ['category' => $subcategory])
+            @include('larvelous-shop.subcategory-block', ['category' => $subcategory])
             @endforeach
         </div>
         @endif
@@ -66,7 +66,7 @@
         @if ($products->total() > 0)
             <div class="row">
                 @foreach ($products as $product)
-                @include('insyht-larvelous-shop::product-block', ['product' => $product])
+                @include('larvelous-shop.product-block', ['product' => $product])
                 @endforeach
             </div>
 

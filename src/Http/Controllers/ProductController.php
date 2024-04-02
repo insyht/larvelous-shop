@@ -14,7 +14,7 @@ class ProductController extends BasePluginController
         }
 
         return $this->decoratedView(
-            'insyht-larvelous-shop::product',
+            'larvelous-shop.product',
             [
                 'product' => $product,
                 'breadcrumb' => $product->title,
