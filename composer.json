@@ -18,7 +18,7 @@
   "require": {
     "php": "^8.2",
     "illuminate/support": "*",
-    "insyht/larvelous": "master"
+    "insyht/larvelous": "^1.0"
   },
   "autoload": {
     "psr-4": {

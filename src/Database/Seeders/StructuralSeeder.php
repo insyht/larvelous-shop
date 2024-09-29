@@ -12,7 +12,7 @@ class StructuralSeeder extends Seeder
         $template = new Template();
         $template->resource_id = 'iws_product';
         $template->label = 'Product template';
-        $template->view = 'insyht-larvelous::base';
+        $template->view = 'base';
         $template->save();
     }
 }
